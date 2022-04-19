@@ -57,7 +57,7 @@ app.get('/', obtenerToken, (req, res) => {
 function obtenerToken (req, res, next){
   var config = {
       method: 'get',
-      url: 'http://localhost:8282/token/autorizacion',
+      url: 'http://40.83.184.169:8282/token/autorizacion',
     };
     
     axios(config)
@@ -77,7 +77,7 @@ function obtenerToken (req, res, next){
 app.get('/token/renueva', obtenerToken, (_req, res) => {
     var config = {
         method: 'get',
-        url: 'http://localhost:8282/token/renueva'
+        url: 'http://40.83.184.169:8282/token/renueva'
       };
       
       axios(config)
