@@ -22,10 +22,17 @@ const port = 8085;
 app.get('/', obtenerToken, (req, res) => {
   // Proceso de generacion de token
   let token = req.token;
+  var date = new Date();
+  let result = date.toLocaleString();
+  
+  console.log('La fecha actual es: ',result);
+
+
   res.send(`
   <h1>Hola soy la pagina del partner !!!!</h1> 
   <h2>y mi token dinámico es:</h2> 
   <p>${token}</p>
+  <h3>Momento de prueba: ${result}</h3>
 
   <forum-traful
     partnerid="SHOWCASE"
@@ -50,14 +57,14 @@ app.get('/', obtenerToken, (req, res) => {
     token="${token}"
   >
   </forum-traful>
-  <script src="http://devwebcomponent.forum.cl/labs-developers-component-cpw-ang-poc/v1/component-es2015.js"></script>
+  <script src="http://devwebcomponent.forum.cl/labs-developers-component-cpw-ang-poc/v2/component-es2015.js"></script>
   `);
 });
 
 function obtenerToken (req, res, next){
   var config = {
       method: 'get',
-      url: 'http://40.83.184.169:8282/token/autorizacion',
+      url: 'http://localhost:8282/token/autorizacion',
     };
     
     axios(config)
@@ -77,7 +84,7 @@ function obtenerToken (req, res, next){
 app.get('/token/renueva', obtenerToken, (_req, res) => {
     var config = {
         method: 'get',
-        url: 'http://40.83.184.169:8282/token/renueva'
+        url: 'http://localhost:8282/token/renueva'
       };
       
       axios(config)
